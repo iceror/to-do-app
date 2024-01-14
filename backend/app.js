@@ -32,6 +32,22 @@ app.get('/tasks', async (request, response) => {
   }
 });
 
+app.get('/tasks/:id', async (request, response) => {
+  try {
+    const tasks = await readJsonFile();
+    const id = parseInt(request.params.id);
+    const task = tasks.find(task => task.id === id);
+    if (task) {
+      response.json(task);
+    } else {
+      response.status(404).send('Task not found');
+    }
+  } catch (error) {
+    console.error(error);
+    response.status(500).send('Internal Server Error');
+  }
+});
+
 app.post('/tasks', async (request, response) => {
   console.log(request.body);
   // create one note 
@@ -49,6 +65,29 @@ app.post('/tasks', async (request, response) => {
 
   } catch (error) {
     console.error(error);
+    response.status(500).send('Internal Server Error');
+  }
+});
+
+app.patch('/tasks/:id', async (request, response) => {
+  try {
+    const tasks = await readJsonFile();
+    const id = parseInt(request.params.id);
+    const taskIndex = tasks.findIndex(task => task.id === id);
+    if (taskIndex !== -1) {
+      console.log(tasks[taskIndex]);
+      tasks[taskIndex] = {
+        ...tasks[taskIndex],
+        'title': request.body.title || tasks[taskIndex].title,
+        'status': request.body.status || tasks[taskIndex].status
+      };
+      await fs.writeFile('db.json', JSON.stringify(tasks, null, 2), 'utf8');
+      response.json(tasks[taskIndex]);
+    } else {
+      response.status(404).send('Task not found')
+    }
+  } catch (error) {
+    console.log(error);
     response.status(500).send('Internal Server Error');
   }
 });
