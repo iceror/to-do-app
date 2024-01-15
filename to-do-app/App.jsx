@@ -1,7 +1,25 @@
 import { useEffect, useState } from "react";
 import { Tasks } from "./Components/Tasks";
 import { getTask, getTasks, postTask, deleteTask, patchTask, editTask } from "./utils";
-import { Button, ButtonGroup } from "@mui/material";
+import { Button, ButtonGroup, TextField, Typography } from "@mui/material";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  typography: {
+    header: {
+      fontFamily: 'Poppins',
+      fontWeight: 500
+    }
+  },
+  palette: {
+    primary:{
+      main: '#0097a7',
+      light:'#33abb8',
+      dark: '#006974'
+    }
+  }
+})
+
 
 export const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -13,7 +31,6 @@ export const App = () => {
 
   const fetchTasks = async () => {
     setTasks(await getTasks());
-    // !showDeletedTasks ? setTasks(fetchedTasks.filter((task) => task.status === 'pending' || task.status === 'completed')) : setTasks(fetchedTasks.filter((task) => task.status === 'deleted'));
   }
 
   useEffect(() => {
@@ -62,32 +79,36 @@ export const App = () => {
 
   return (
     <>
-      <header>
-        <h1>To-do App</h1>
-      </header>
-      <main>
+      <ThemeProvider theme={theme}>
 
-        <ButtonGroup variant="contained" aria-label="outlined primary button group">
-          <Button variant="contained" onClick={() => { setShowCompletedTasks(false); setShowDeletedTasks(false) }}>Pending tasks</Button>
-          <Button variant="contained" onClick={() => { setShowCompletedTasks(true); setShowDeletedTasks(false) }}>Completed tasks</Button>
-          <Button variant="contained" onClick={() => setShowDeletedTasks(true)}>Deleted tasks</Button>
-        </ButtonGroup>
+        <header>
+        <Typography><h1 variant={'header'}>To-do App</h1></Typography>
+          
+        </header>
+        <main>
 
-        <Button variant='contained' onClick={() => setShowInput(!showInput)}>Add</Button>
-        {showInput ?
-          <form action="">
-            <input type="text" onChange={handleTitle} onKeyDown={handleSaveTask} />
-          </form>
-          : null}
-        <Tasks tasks={
-          !showDeletedTasks
-            ? showCompletedTasks
-              ? tasks.filter((task) => task.status === 'completed')
-              : tasks.filter((task) => task.status === 'pending')
-            : tasks.filter((task) => task.status === 'deleted')
-        }
-          fetchTask={fetchTask} currentTitle={currentTitle} handleDelete={handleDelete} handleRetrieve={handleRetrieve} handleEdit={handleEdit}/>
-      </main>
+          <ButtonGroup variant="contained" aria-label="outlined primary button group">
+            <Button variant="contained" onClick={() => { setShowCompletedTasks(false); setShowDeletedTasks(false) }}>Pending tasks</Button>
+            <Button variant="contained" onClick={() => { setShowCompletedTasks(true); setShowDeletedTasks(false) }}>Completed tasks</Button>
+            <Button variant="contained" onClick={() => setShowDeletedTasks(true)}>Deleted tasks</Button>
+          </ButtonGroup>
+
+          <Button variant='contained' onClick={() => setShowInput(!showInput)}>Add</Button>
+          {showInput ?
+            <form action="">
+              <TextField variant='outlined' type="text" onChange={handleTitle} onKeyDown={handleSaveTask} />
+            </form>
+            : null}
+          <Tasks tasks={
+            !showDeletedTasks
+              ? showCompletedTasks
+                ? tasks.filter((task) => task.status === 'completed')
+                : tasks.filter((task) => task.status === 'pending')
+              : tasks.filter((task) => task.status === 'deleted')
+          }
+            fetchTasks={fetchTasks} currentTitle={currentTitle} handleDelete={handleDelete} handleRetrieve={handleRetrieve} handleEdit={handleEdit} />
+        </main>
+      </ThemeProvider>
     </>
   )
 }
