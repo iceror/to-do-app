@@ -54,7 +54,7 @@ export const postTask = (taskTitle) => {
   
   return axios.request(config)
   .then((response) => {
-    // console.log(JSON.stringify(response.data));
+    console.log(JSON.stringify(response.data));
     return response.data;
   })
   .catch((error) => {
@@ -64,8 +64,11 @@ export const postTask = (taskTitle) => {
 }
 
 export const patchTask = (id, status) => {
+  console.log(status);
+  let completedAt = status === 'completed' ? new Date() : null;
   let data = JSON.stringify({
-    "status": status
+    "status": status,
+    "markedAsCompletedIn": completedAt
   });
   
   let config = {
@@ -107,6 +110,31 @@ export const deleteTask = (id) => {
   .then((response) => {
     // console.log(JSON.stringify(response.data));
     return response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
+
+export const editTask = (newTitle, id) => {
+  let data = JSON.stringify({
+    "title": newTitle
+  });
+  
+  let config = {
+    method: 'patch',
+    maxBodyLength: Infinity,
+    url: `http://localhost:3000/tasks/${id}`,
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+  
+  return axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+    return response.data
   })
   .catch((error) => {
     console.log(error);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Tasks } from "./Components/Tasks";
-import { getTask, getTasks, postTask, deleteTask, patchTask } from "./utils";
+import { getTask, getTasks, postTask, deleteTask, patchTask, editTask } from "./utils";
 import { Button, ButtonGroup } from "@mui/material";
 
 export const App = () => {
@@ -25,7 +25,7 @@ export const App = () => {
     setCurrentTitle(task.title);
   }
 
-  const handleChange = (event) => {
+  const handleTitle = (event) => {
     setTaskTitle(event.target.value);
   }
 
@@ -36,6 +36,14 @@ export const App = () => {
       fetchTasks();
       setShowInput(false);
       setTaskTitle('');
+    }
+  }
+
+  const handleEdit = async (event, newTitle, id) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      await editTask(newTitle, id);
+      fetchTasks();
     }
   }
 
@@ -68,7 +76,7 @@ export const App = () => {
         <Button variant='contained' onClick={() => setShowInput(!showInput)}>Add</Button>
         {showInput ?
           <form action="">
-            <input type="text" onChange={handleChange} onKeyDown={handleSaveTask} />
+            <input type="text" onChange={handleTitle} onKeyDown={handleSaveTask} />
           </form>
           : null}
         <Tasks tasks={
@@ -78,7 +86,7 @@ export const App = () => {
               : tasks.filter((task) => task.status === 'pending')
             : tasks.filter((task) => task.status === 'deleted')
         }
-          fetchTask={fetchTask} currentTitle={currentTitle} handleDelete={handleDelete} handleRetrieve={handleRetrieve} />
+          fetchTask={fetchTask} currentTitle={currentTitle} handleDelete={handleDelete} handleRetrieve={handleRetrieve} handleEdit={handleEdit}/>
       </main>
     </>
   )
