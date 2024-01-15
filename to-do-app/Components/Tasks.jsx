@@ -77,9 +77,9 @@ export const Tasks = ({ tasks, fetchTasks, handleEdit, handleDelete, handleRetri
               onChange={(event) => handleChange(task.id, event)}
             />
             {task.status === 'deleted' ?
-              <ButtonGroup>
-                <Button variant='contained' onClick={() => handleRetrieve(task.id)} style={{ marginLeft: '1rem' }}>Retrieve</Button>
-                <Button variant='contained' onClick={() => handlePermanentlyDelete(task.id)} style={{ marginLeft: '1rem' }}>Delete</Button>
+              <ButtonGroup style={{ marginLeft: '1rem' }}>
+                <Button variant='contained' onClick={() => handleRetrieve(task.id)} >Retrieve</Button>
+                <Button variant='contained' onClick={() => handlePermanentlyDelete(task.id)} >Delete</Button>
               </ButtonGroup>
               :
               <Button variant='contained' onClick={() => handleDelete(task.id)} style={{ marginLeft: '1rem' }}>Delete</Button>

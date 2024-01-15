@@ -91,8 +91,18 @@ export const App = () => {
       <ThemeProvider theme={theme}>
 
         <header>
-          <Typography><h1 variant={'header'} style={{height: '5rem', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>To-do App</h1></Typography>
+          <Typography><h1 variant={'header'}
+            style={{
+              height: '6rem',
+              margin: 0,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#006974',
+              color: 'white'
+            }}>To-do App</h1></Typography>
         </header>
+
         <main style={{
           display: 'flex',
           flexDirection: 'column',
@@ -123,7 +133,7 @@ export const App = () => {
                 : tasks.filter((task) => task.status === 'pending')
               : tasks.filter((task) => task.status === 'deleted')
           }
-            fetchTasks={fetchTasks} currentTitle={currentTitle} handleDelete={handleDelete} handleRetrieve={handleRetrieve} handleEdit={handleEdit} handlePermanentlyDelete={handlePermanentlyDelete}/>
+            fetchTasks={fetchTasks} currentTitle={currentTitle} handleDelete={handleDelete} handleRetrieve={handleRetrieve} handleEdit={handleEdit} handlePermanentlyDelete={handlePermanentlyDelete} />
         </main>
       </ThemeProvider>
     </>
