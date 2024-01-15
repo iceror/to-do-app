@@ -82,12 +82,12 @@ app.patch('/tasks/:id', async (request, response) => {
         'status': request.body.status || tasks[taskIndex].status
       };
       await fs.writeFile('db.json', JSON.stringify(tasks, null, 2), 'utf8');
-      response.json(tasks[taskIndex]);
+      return response.json(tasks[taskIndex]);
     } else {
-      response.status(404).send('Task not found');
+      return response.status(404).send('Task not found');
     }
   } catch (error) {
     console.log(error);
-    response.status(500).send('Internal Server Error');
+    return response.status(500).send('Internal Server Error');
   }
 });
