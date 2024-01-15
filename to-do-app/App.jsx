@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Tasks } from "./Components/Tasks";
-import { getTask, getTasks, postTask } from "./utils";
+import { getTask, getTasks, postTask, deleteTask, patchTask } from "./utils";
 import { Button } from "@mui/material";
 
 export const App = () => {
@@ -38,6 +38,19 @@ export const App = () => {
     }
   }
 
+  const handleDelete = async (taskId) => {
+    const deletedTask = await deleteTask(taskId);
+    fetchTasks();
+    console.log(deletedTask);
+  }
+
+  const handleRetrieve = async (id) => {
+    const task = await getTask(id);
+    let status = task.status === 'deleted' ? 'pending' : task.status;
+    let retrievedTask = await patchTask(id, status);
+    fetchTasks();
+  }
+
   return (
     <>
       <header>
@@ -55,7 +68,7 @@ export const App = () => {
           </form>
           : null}
         <Tasks tasks={!showDeletedTasks ? tasks.filter((task) => task.status === 'pending' || task.status === 'completed') : tasks.filter((task) => task.status === 'deleted')}
-          fetchTask={fetchTask} currentTitle={currentTitle} />
+          fetchTask={fetchTask} currentTitle={currentTitle} handleDelete={handleDelete} handleRetrieve={handleRetrieve}/>
       </main>
     </>
   )
