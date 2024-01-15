@@ -4,8 +4,9 @@ import { deleteTask, editTask, getTask, patchTask } from "../utils";
 export const Tasks = ({ tasks, fetchTasks, currentTitle, handleEdit, handleDelete, handleRetrieve }) => {
   // const [checked, setChecked] = useState(tasks.forEach(() => {false}));
   const [checkedTasks, setCheckedTasks] = useState({});
-  const [newTitle, setNewTitle] = useState('');
   const [taskEdits, setTaskEdits] = useState({});
+  const [newTitle, setNewTitle] = useState('');
+  const [editId, setEditId] = useState(1)
 
   const handleChecked = async (taskId) => {
     // change state in db from pending to completed
@@ -40,14 +41,23 @@ export const Tasks = ({ tasks, fetchTasks, currentTitle, handleEdit, handleDelet
   }, [tasks]);
 
   const handleChange = async (taskId, event) => {
-    let newTitle = event.target.value
-    await editTask(newTitle, taskId)
-    // setNewTitle(event.target.value);
+    // let newTitle = event.target.value;
+    setNewTitle(event.target.value);
+    setEditId(taskId);
     setTaskEdits((prevTaskEdits) => ({
       ...prevTaskEdits,
       [taskId]: newTitle,
     }));
   }
+
+  useEffect(() => {
+    const getData = setTimeout(async () => {
+      await editTask(newTitle, editId);
+      console.log('edited task');
+    }, 1000)
+
+    return () => clearTimeout(getData)
+  }, [newTitle, editId])
 
   return (
     <>
