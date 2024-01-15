@@ -140,3 +140,21 @@ export const editTask = (newTitle, id) => {
     console.log(error);
   });
 }
+
+export const permanentlyDeleteTask = (id) =>{
+  let config = {
+    method: 'delete',
+    maxBodyLength: Infinity,
+    url: `http://localhost:3000/tasks/${id}`,
+    headers: { }
+  };
+  
+  return axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+    return response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Tasks } from "./Components/Tasks";
-import { getTask, getTasks, postTask, deleteTask, patchTask, editTask } from "./utils";
+import { getTask, getTasks, postTask, deleteTask, patchTask, editTask, permanentlyDeleteTask } from "./utils";
 import { Button, ButtonGroup, TextField, Typography } from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -81,8 +81,9 @@ export const App = () => {
     fetchTasks();
   }
 
-  const handlePermanentlyDelete = (id) => {
-
+  const handlePermanentlyDelete = async (id) => {
+    await permanentlyDeleteTask(id);
+    fetchTasks();
   }
 
   return (

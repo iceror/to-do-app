@@ -91,3 +91,16 @@ app.patch('/tasks/:id', async (request, response) => {
     return response.status(500).send('Internal Server Error');
   }
 });
+
+app.delete('/tasks/:id', async (request, response) => {
+  try {
+    let tasks = await readJsonFile();
+    const id = parseInt(request.params.id);
+    tasks = tasks.filter(task => task.id !== id);
+    await fs.writeFile('db.json', JSON.stringify(tasks, null, 2), 'utf8');
+    response.send(`Note with ID ${id} deleted successfully`);
+  } catch (error) {
+    console.error(error);
+    response.status(500).send('Internal Server Error');
+  }
+});
