@@ -54,7 +54,7 @@ export const postTask = (taskTitle) => {
   
   return axios.request(config)
   .then((response) => {
-    console.log(JSON.stringify(response.data));
+    // console.log(JSON.stringify(response.data));
     return response.data;
   })
   .catch((error) => {
@@ -133,7 +133,7 @@ export const editTask = (newTitle, id) => {
   
   return axios.request(config)
   .then((response) => {
-    console.log(JSON.stringify(response.data));
+    // console.log(JSON.stringify(response.data));
     return response.data
   })
   .catch((error) => {
@@ -151,7 +151,7 @@ export const permanentlyDeleteTask = (id) =>{
   
   return axios.request(config)
   .then((response) => {
-    console.log(JSON.stringify(response.data));
+    // console.log(JSON.stringify(response.data));
     return response.data;
   })
   .catch((error) => {

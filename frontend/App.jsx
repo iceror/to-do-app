@@ -71,7 +71,7 @@ export const App = () => {
   const handleDelete = async (taskId) => {
     const deletedTask = await deleteTask(taskId);
     fetchTasks();
-    console.log(deletedTask);
+    // console.log(deletedTask);
   }
 
   const handleRetrieve = async (id) => {

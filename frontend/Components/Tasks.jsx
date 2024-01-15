@@ -47,7 +47,7 @@ export const Tasks = ({ tasks, fetchTasks, handleEdit, handleDelete, handleRetri
   useEffect(() => {
     const getData = setTimeout(async () => {
       await editTask(newTitle, editId);
-      console.log('edited task');
+      // console.log('edited task');
     }, 1000)
 
     return () => clearTimeout(getData)
