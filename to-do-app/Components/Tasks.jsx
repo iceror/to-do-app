@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { deleteTask, editTask, getTask, patchTask } from "../utils";
 import { Button, ButtonGroup, Checkbox, FormControlLabel, TextField } from "@mui/material";
-import trash from '../public/trash-bin.png'
 
 export const Tasks = ({ tasks, fetchTasks, handleEdit, handleDelete, handleRetrieve, handlePermanentlyDelete }) => {
   const [checkedTasks, setCheckedTasks] = useState({});

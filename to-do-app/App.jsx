@@ -100,7 +100,7 @@ export const App = () => {
               alignItems: 'center',
               backgroundColor: '#006974',
               color: 'white'
-            }}>To-do App</h1></Typography>
+            }}>To-do List</h1></Typography>
         </header>
 
         <main style={{
