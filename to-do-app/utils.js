@@ -87,3 +87,28 @@ export const patchTask = (id, status) => {
     console.log(error);
   });
 }
+
+export const deleteTask = (id) => {
+  let data = JSON.stringify({
+    "status": "deleted"
+  });
+  
+  let config = {
+    method: 'patch',
+    maxBodyLength: Infinity,
+    url: `http://localhost:3000/tasks/${id}`,
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+  
+  return axios.request(config)
+  .then((response) => {
+    // console.log(JSON.stringify(response.data));
+    return response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
