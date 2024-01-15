@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "Buy new clothes for work",
-    "status": "completed"
+    "status": "deleted"
   },
   {
     "title": "Take clothes to the laundry",
@@ -13,11 +13,6 @@
     "title": "This is a new task, edited.",
     "status": "pending",
     "id": 4
-  },
-  {
-    "title": "My new task",
-    "status": "deleted",
-    "id": 6
   },
   {
     "title": "This is a new task for Monday",
@@ -38,5 +33,10 @@
     "title": "Creating a new task is awesome!",
     "status": "pending",
     "id": 10
+  },
+  {
+    "title": "This is a new task!",
+    "status": "pending",
+    "id": 11
   }
 ]

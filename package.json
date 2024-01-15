@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "front": "cd to-do-app && npm run dev",
+    "front": "cd frontend && npm run dev",
     "back": "cd backend && npm run start",
     "start": "concurrently \"npm run back\" \"npm run front\" "
   },
