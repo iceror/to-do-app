@@ -1,17 +1,42 @@
 [
   {
     "id": 1,
-    "title": "First task pending",
-    "status": "pending"
+    "title": "Buy new clothes for work",
+    "status": "completed"
   },
   {
     "title": "Take clothes to the laundry",
-    "status": "deleted",
+    "status": "completed",
     "id": 2
   },
   {
-    "title": "Go gocery shopping",
+    "title": "This is a new task, edited.",
+    "status": "pending",
+    "id": 4
+  },
+  {
+    "title": "My new task",
+    "status": "deleted",
+    "id": 6
+  },
+  {
+    "title": "This is a new task for Monday",
+    "status": "pending",
+    "id": 7
+  },
+  {
+    "title": "I love writing to-do lists!",
+    "status": "deleted",
+    "id": 8
+  },
+  {
+    "title": "This is a very big task.\nIt's a multiline task.\n\nI can't imagine a bigger task on this to-do list.",
     "status": "completed",
-    "id": 3
+    "id": 9
+  },
+  {
+    "title": "Creating a new task is awesome!",
+    "status": "pending",
+    "id": 10
   }
 ]
