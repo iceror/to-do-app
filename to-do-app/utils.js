@@ -36,6 +36,33 @@ export const getTask = (id) => {
   });
 }
 
+export const postTask = (taskTitle) => {
+  let data = JSON.stringify({
+    "title": taskTitle,
+    "status": 'pending'
+  });
+  
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'http://localhost:3000/tasks',
+    headers: { 
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+  
+  return axios.request(config)
+  .then((response) => {
+    // console.log(JSON.stringify(response.data));
+    return response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+  
+}
+
 export const patchTask = (id, status) => {
   let data = JSON.stringify({
     "status": status

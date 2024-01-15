@@ -84,7 +84,7 @@ app.patch('/tasks/:id', async (request, response) => {
       await fs.writeFile('db.json', JSON.stringify(tasks, null, 2), 'utf8');
       response.json(tasks[taskIndex]);
     } else {
-      response.status(404).send('Task not found')
+      response.status(404).send('Task not found');
     }
   } catch (error) {
     console.log(error);
