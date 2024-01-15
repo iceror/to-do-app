@@ -9,12 +9,16 @@ const theme = createTheme({
     header: {
       fontFamily: 'Poppins',
       fontWeight: 500
+    },
+    inputs: {
+      fontFamily: 'Poppins',
+      fontWeightnt: 300
     }
   },
   palette: {
-    primary:{
+    primary: {
       main: '#0097a7',
-      light:'#33abb8',
+      light: '#33abb8',
       dark: '#006974'
     }
   }
@@ -77,28 +81,40 @@ export const App = () => {
     fetchTasks();
   }
 
+  const handlePermanentlyDelete = (id) => {
+
+  }
+
   return (
     <>
       <ThemeProvider theme={theme}>
 
         <header>
-        <Typography><h1 variant={'header'}>To-do App</h1></Typography>
-          
+          <Typography><h1 variant={'header'} style={{height: '5rem', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>To-do App</h1></Typography>
         </header>
-        <main>
+        <main style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}>
 
-          <ButtonGroup variant="contained" aria-label="outlined primary button group">
+          <ButtonGroup variant="contained" aria-label="outlined primary button group" style={{ margin: '1rem' }}>
             <Button variant="contained" onClick={() => { setShowCompletedTasks(false); setShowDeletedTasks(false) }}>Pending tasks</Button>
             <Button variant="contained" onClick={() => { setShowCompletedTasks(true); setShowDeletedTasks(false) }}>Completed tasks</Button>
             <Button variant="contained" onClick={() => setShowDeletedTasks(true)}>Deleted tasks</Button>
           </ButtonGroup>
 
-          <Button variant='contained' onClick={() => setShowInput(!showInput)}>Add</Button>
-          {showInput ?
-            <form action="">
-              <TextField variant='outlined' type="text" onChange={handleTitle} onKeyDown={handleSaveTask} />
-            </form>
-            : null}
+          <section style={{
+            display: 'flex',
+          }}>
+            <Button variant='contained' onClick={() => setShowInput(!showInput)} style={{ marginRight: '1rem' }}>Add</Button>
+            {showInput ?
+              <form action="">
+                <TextField variant='outlined' type="text" size="small" onChange={handleTitle} onKeyDown={handleSaveTask} />
+              </form>
+              : null}
+          </section>
+
           <Tasks tasks={
             !showDeletedTasks
               ? showCompletedTasks
@@ -106,7 +122,7 @@ export const App = () => {
                 : tasks.filter((task) => task.status === 'pending')
               : tasks.filter((task) => task.status === 'deleted')
           }
-            fetchTasks={fetchTasks} currentTitle={currentTitle} handleDelete={handleDelete} handleRetrieve={handleRetrieve} handleEdit={handleEdit} />
+            fetchTasks={fetchTasks} currentTitle={currentTitle} handleDelete={handleDelete} handleRetrieve={handleRetrieve} handleEdit={handleEdit} handlePermanentlyDelete={handlePermanentlyDelete}/>
         </main>
       </ThemeProvider>
     </>
