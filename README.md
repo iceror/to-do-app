@@ -8,15 +8,12 @@ Before you begin, make sure you have the following installed:
 
 - ***Node.js:*** Download and install Node.js
 - ***npm:*** npm is included with Node.js, but you can upgrade npm if needed.
-- ***Concurrently:*** Install it globally by running `npm install -g concurrently`.
+- ***Concurrently***
 
 ## Getting Started
 ### Clone the repository:
 
 git clone https://github.com/iceror/to-do-app.git
-
-### Navigate to the project folder:
-`cd to-do-app`
 
 ### Install dependencies:
 `npm install`
