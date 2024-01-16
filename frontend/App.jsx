@@ -17,9 +17,10 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#0097a7',
-      light: '#33abb8',
-      dark: '#006974'
+      main: '#168E9B'
+    },
+    secondary: {
+      main: '#71ECAF'
     }
   }
 })
@@ -32,6 +33,7 @@ export const App = () => {
   const [showInput, setShowInput] = useState(false);
   const [showDeletedTasks, setShowDeletedTasks] = useState(false);
   const [showCompletedTasks, setShowCompletedTasks] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const fetchTasks = async () => {
     setTasks(await getTasks());
@@ -86,20 +88,19 @@ export const App = () => {
     fetchTasks();
   }
 
+
   return (
     <>
       <ThemeProvider theme={theme}>
 
-        <header>
-          <Typography><h1 variant={'header'}
+        <header style={{backgroundColor: '#1B727B', height: '6rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+          <Typography variant={'header'}><h1 
             style={{
-              height: '6rem',
               margin: 0,
               display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: '#006974',
-              color: 'white'
+              flexDirection: 'column',
+              color: '#FFFF',
+              alignItems: 'center'
             }}>To-do List</h1></Typography>
         </header>
 
@@ -109,19 +110,19 @@ export const App = () => {
           alignItems: 'center'
         }}>
 
-          <ButtonGroup variant="contained" aria-label="outlined primary button group" style={{ margin: '1rem' }}>
-            <Button variant="contained" onClick={() => { setShowCompletedTasks(false); setShowDeletedTasks(false) }}>Pending tasks</Button>
-            <Button variant="contained" onClick={() => { setShowCompletedTasks(true); setShowDeletedTasks(false) }}>Completed tasks</Button>
-            <Button variant="contained" onClick={() => setShowDeletedTasks(true)}>Deleted tasks</Button>
+          <ButtonGroup variant="contained" aria-label="text button group" style={{ margin: '1rem', fontFamily: 'Poppins' }}>
+            <Button variant={!showCompletedTasks ? 'text' : 'contained'}  size="medium" onClick={() => { setShowCompletedTasks(false); setShowDeletedTasks(false) }}>Pending tasks</Button>
+            <Button variant={showCompletedTasks ? 'text' : 'contained'}  size="medium" onClick={() => { setShowCompletedTasks(true); setShowDeletedTasks(false) }}>Completed tasks</Button>
+            <Button variant={showDeletedTasks ? 'text' : 'contained'}  size="medium" onClick={() => {setShowDeletedTasks(true); setShowCompletedTasks(undefined)}}>Deleted tasks</Button>
           </ButtonGroup>
-
           <section style={{
             display: 'flex',
           }}>
+
             <Button variant='contained' onClick={() => setShowInput(!showInput)} style={{ marginRight: '1rem' }}>Add</Button>
             {showInput ?
               <form action="">
-                <TextField variant='outlined' type="text" size="small" onChange={handleTitle} onKeyDown={handleSaveTask} />
+                <TextField variant='outlined' type="text" size="small" inputProps={{style: {fontFamily: 'Poppins', fontWeight: '300'}}}  onChange={handleTitle} onKeyDown={handleSaveTask} />
               </form>
               : null}
           </section>

@@ -64,7 +64,7 @@ export const postTask = (taskTitle) => {
 }
 
 export const patchTask = (id, status) => {
-  console.log(status);
+  // console.log(status);
   let completedAt = status === 'completed' ? new Date() : null;
   let data = JSON.stringify({
     "status": status,
