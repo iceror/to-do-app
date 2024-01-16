@@ -31,12 +31,17 @@
   },
   {
     "title": "Creating a new task is awesome!",
-    "status": "pending",
+    "status": "deleted",
     "id": 10
   },
   {
     "title": "This is a new task!",
     "status": "pending",
     "id": 11
+  },
+  {
+    "title": "Added new task :)",
+    "status": "pending",
+    "id": 12
   }
 ]
