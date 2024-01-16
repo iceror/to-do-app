@@ -33,6 +33,8 @@ export const App = () => {
   const [showInput, setShowInput] = useState(false);
   const [showDeletedTasks, setShowDeletedTasks] = useState(false);
   const [showCompletedTasks, setShowCompletedTasks] = useState(false);
+  const [showPendingTasks, setShowPendingTasks] = useState(false);
+
   const [open, setOpen] = useState(false);
 
   const fetchTasks = async () => {
@@ -111,9 +113,9 @@ export const App = () => {
         }}>
 
           <ButtonGroup variant="contained" aria-label="text button group" style={{ margin: '1rem', fontFamily: 'Poppins' }}>
-            <Button variant={!showCompletedTasks ? 'text' : 'contained'}  size="medium" onClick={() => { setShowCompletedTasks(false); setShowDeletedTasks(false) }}>Pending tasks</Button>
-            <Button variant={showCompletedTasks ? 'text' : 'contained'}  size="medium" onClick={() => { setShowCompletedTasks(true); setShowDeletedTasks(false) }}>Completed tasks</Button>
-            <Button variant={showDeletedTasks ? 'text' : 'contained'}  size="medium" onClick={() => {setShowDeletedTasks(true); setShowCompletedTasks(undefined)}}>Deleted tasks</Button>
+            <Button variant={showPendingTasks ? 'text' : 'contained'}  size="medium" onClick={() => { setShowPendingTasks(true); setShowCompletedTasks(false); setShowDeletedTasks(false) }}>Pending tasks</Button>
+            <Button variant={showCompletedTasks ? 'text' : 'contained'}  size="medium" onClick={() => { setShowPendingTasks(false); setShowCompletedTasks(true); setShowDeletedTasks(false) }}>Completed tasks</Button>
+            <Button variant={showDeletedTasks ? 'text' : 'contained'}  size="medium" onClick={() => { setShowPendingTasks(false); setShowDeletedTasks(true); setShowCompletedTasks(false)}}>Deleted tasks</Button>
           </ButtonGroup>
           <section style={{
             display: 'flex',

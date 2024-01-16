@@ -118,11 +118,11 @@ export const Tasks = ({ tasks, fetchTasks, handleEdit, handleDelete, handleRetri
             />
             {task.status === 'deleted' ?
               <ButtonGroup aria-label="text button group" style={{ marginLeft: '1rem' }}>
-                <SubdirectoryArrowLeftRoundedIcon style={{color: '#23B51C', cursor: 'pointer', marginRight: '10px'}} onClick={() => {handleRetrieve(task.id); handleSnackbar('Task retrieved')}} ></SubdirectoryArrowLeftRoundedIcon>
-                <DeleteForeverIcon onClick={() =>{ handlePermanentlyDelete(task.id); handleSnackbar('Task permanently deleted')}} style={{color: '#E70606', cursor: 'pointer'}}></DeleteForeverIcon>
+                <SubdirectoryArrowLeftRoundedIcon style={{color: '#23B51C', cursor: 'pointer', marginRight: '10px'}} onClick={() => {handleRetrieve(task.id); handleSnackbar('Task retrieved!')}} ></SubdirectoryArrowLeftRoundedIcon>
+                <DeleteForeverIcon onClick={() =>{ handlePermanentlyDelete(task.id); handleSnackbar('Task permanently deleted!')}} style={{color: '#E70606', cursor: 'pointer'}}></DeleteForeverIcon>
               </ButtonGroup>
               :
-              <DeleteOutlineIcon  onClick={() => {handleDelete(task.id); handleSnackbar('Task deleted')}} style={{ marginLeft: '1rem', color:'#F16B11', cursor: 'pointer' }}></DeleteOutlineIcon>
+              <DeleteOutlineIcon  onClick={() => {handleDelete(task.id); handleSnackbar('Task deleted!')}} style={{ marginLeft: '1rem', color:'#F16B11', cursor: 'pointer' }}></DeleteOutlineIcon>
             }
           </li>
         )}
